@@ -25,7 +25,7 @@ app.event("app_mention", async (message) => {
   try {
     await converse(message, text);
   } catch (e) {
-    say("An unexpected error occurred 😵");
+    say("😵");
     console.log(e);
   }
 });
