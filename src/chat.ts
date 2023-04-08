@@ -17,12 +17,12 @@ async function retrieveThread(
   const ms = await client.conversations
     .replies({
       channel: event.channel,
-      ts: event.thread_ts!,
+      ts: event.thread_ts!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     })
     .then((res) => res.messages || []);
 
   for (const m of ms) {
-    const text = m.text!.trim();
+    const text = m.text?.trim();
 
     if (!text) {
       continue;
@@ -64,10 +64,11 @@ export async function converse(message: Message, text: string) {
     messages: conversations,
   });
 
-  const aiMsg = res.data.choices[0].message!;
+  const aiMsg = res.data.choices[0].message;
+  const reply = aiMsg?.content.trim() || "😵‍💫";
 
   say({
-    text: aiMsg.content.trim(),
+    text: reply,
     channel: event.channel,
     thread_ts: event.ts,
     reply_broadcast: conversations.length < 2,

@@ -7,7 +7,4 @@ module.exports = {
     node: true,
   },
   ignorePatterns: ["dist/**/*"],
-  rules: {
-    "@typescript-eslint/no-non-null-assertion": "off",
-  },
 };
