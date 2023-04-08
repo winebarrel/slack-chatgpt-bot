@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import { App, LogLevel } from "@slack/bolt";
-import { converse } from "./chat";
+import { converse, AI_MODEL } from "./chat";
 
 const app = new App({
   logLevel: process.env.LOG_LEVEL
@@ -32,5 +32,5 @@ app.event("app_mention", async (message) => {
 
 (async () => {
   await app.start();
-  console.log("🤖 bot started");
+  console.log(`🤖 bot started (model: ${AI_MODEL})`);
 })();
