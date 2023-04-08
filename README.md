@@ -10,7 +10,7 @@ A Slack ChatGPT bot.
 
 1. [Create Slack App](https://api.slack.com/apps) from an [app manifest](https://github.com/winebarrel/slack-chatgpt-bot/blob/main/manifest.json).
 1. Generate App-Level Token.
-    * **Information > App-Level Tokens > Generate Token and Scopes**
+    * **Basic Information > App-Level Tokens > Generate Token and Scopes**
     * Generate token with `connections:write` scope.
     * Copy Token. (e.g. `xapp-***`)
 1. Install to Workspacke.
