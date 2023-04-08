@@ -19,10 +19,12 @@ app.event("app_mention", async (message) => {
     .replace(new RegExp(`^<@${context.botUserId}[^>]*?>`), "")
     .trim();
 
+  if (!text) {
+    return;
+  }
+
   try {
-    if (text) {
-      await converse(message, text);
-    }
+    await converse(message, text);
   } catch (e) {
     say("An unexpected error occurred 😢");
     console.log(e);
