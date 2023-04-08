@@ -15,7 +15,8 @@ const app = new App({
 
 app.event("app_mention", async (message) => {
   const { event, context, say } = message;
-  const text = event.text.replace(/^<@${context.botUserId}[^>]*?>/, "").trim();
+  const botUserId = context.botUserId; // eslint-disable-line @typescript-eslint/no-unused-vars
+  const text = event.text.replace(/^<@${botUserId}[^>]*?>/, "").trim();
 
   if (!text) {
     return;
