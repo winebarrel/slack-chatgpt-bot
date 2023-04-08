@@ -19,3 +19,15 @@ A Slack ChatGPT bot.
 
 1. Open https://platform.openai.com/account/api-keys.
 1. Click **Create new secret key**.
+
+### Create .env
+
+1. Copy [`.env.sample`](https://github.com/winebarrel/slack-chatgpt-bot/blob/main/.env.sample) to `.env`.
+1. Update `.env`.
+
+### Start bot
+
+```
+npm i
+npm start
+```
