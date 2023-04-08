@@ -15,9 +15,8 @@ const app = new App({
 
 app.event("app_mention", async (message) => {
   const { event, context, say } = message;
-  const text = event.text
-    .replace(new RegExp(`^<@${context.botUserId}[^>]*?>`), "")
-    .trim();
+  const mention = new RegExp(`^<@${context.botUserId}[^>]*?>`);
+  const text = event.text.replace(mention, "").trim();
 
   if (!text) {
     return;
