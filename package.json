@@ -1,7 +1,6 @@
 {
   "devDependencies": {
     "dotenv": "^16.0.3",
-    "ts-node": "^10.9.1",
     "tsc-watch": "^6.0.0",
     "typescript": "^5.0.4"
   },
