@@ -7,5 +7,9 @@
   "dependencies": {
     "@slack/bolt": "^3.13.0",
     "openai": "^3.2.1"
+  },
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "watch": "tsc-watch --onSuccess \"npm start\""
   }
 }
