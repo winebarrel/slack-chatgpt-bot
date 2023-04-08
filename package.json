@@ -15,7 +15,7 @@
     "start": "tsc && node dist/index.js",
     "watch": "tsc-watch --onSuccess \"npm start\"",
     "compile": "tsc",
-    "lint": "eslint -max-warnings=0 .",
+    "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix ."
   }
 }
