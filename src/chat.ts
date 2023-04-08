@@ -14,13 +14,12 @@ async function retrieveThread(
   { client, event, context }: Message,
   conversations: ChatCompletionRequestMessage[]
 ) {
-  const ms =
-    (await client.conversations
-      .replies({
-        channel: event.channel,
-        ts: event.thread_ts!,
-      })
-      .then((res) => res.messages)) || [];
+  const ms = await client.conversations
+    .replies({
+      channel: event.channel,
+      ts: event.thread_ts!,
+    })
+    .then((res) => res.messages || []);
 
   for (const m of ms) {
     const text = m.text!.trim();
