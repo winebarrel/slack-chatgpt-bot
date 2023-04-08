@@ -8,7 +8,7 @@ const openai = new OpenAIApi(
   new Configuration({ apiKey: process.env.OPENAI_API_KEY })
 );
 
-export const AI_MODEL = process.env.AI_MODEL!;
+export const AI_MODEL = process.env.AI_MODEL || "gpt-3.5-turbo";
 
 async function retrieveThread(
   { client, event, context }: Message,
