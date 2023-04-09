@@ -33,3 +33,14 @@ A Slack ChatGPT bot.
 npm i
 npm start
 ```
+
+## Update system message
+
+You can change the behavior of the bot by entering the following message:
+
+```
+@bot system (bot behavior e.g. "You are a helpful assistant.")
+```
+
+![](https://user-images.githubusercontent.com/117768/230777530-066f2627-a100-4a46-b4ed-0572b0b4bc9e.png)
+
