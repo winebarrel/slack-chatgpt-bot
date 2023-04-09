@@ -24,8 +24,9 @@ app.event("app_mention", async (message) => {
 
   try {
     await converse(message, text);
-  } catch (e) {
-    say("😵");
+  } catch (e: any) {
+    const errMsg = e?.response?.data?.error?.message || e?.message || e;
+    say(`😵 ${errMsg}`);
     console.log(e);
   }
 });
