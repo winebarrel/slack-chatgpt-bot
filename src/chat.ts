@@ -95,8 +95,6 @@ export async function converse(message: Message, text: string) {
     }
   }
 
-  console.log(conversations);
-
   const res = await openai.createChatCompletion({
     model: AI_MODEL,
     messages: conversations,
