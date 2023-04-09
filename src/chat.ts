@@ -40,17 +40,10 @@ async function retrieveThread(
         .replace(new RegExp(`^<@${context.botUserId}[^>]*?>`), "")
         .trim();
 
-      if (content.match(/^system\s+/)) {
-        conversations.push({
-          role: "system",
-          content: content.replace(/^system\s+/, "").trim(),
-        });
-      } else {
-        conversations.push({
-          role: "user",
-          content: content,
-        });
-      }
+      conversations.push({
+        role: "user",
+        content: content,
+      });
     }
   }
 }
