@@ -9,6 +9,7 @@ const openai = new OpenAIApi(
 );
 
 export const AI_MODEL = process.env.AI_MODEL || "gpt-3.5-turbo";
+const NO_REPLY = "😵‍💫";
 
 async function retrieveThread(
   { client, event, context }: Message,
@@ -28,7 +29,7 @@ async function retrieveThread(
       continue;
     }
 
-    if (m.bot_id == context.botId) {
+    if (m.bot_id == context.botId && text != NO_REPLY) {
       conversations.push({
         role: "assistant",
         content: text,
@@ -65,7 +66,7 @@ export async function converse(message: Message, text: string) {
   });
 
   const aiMsg = res.data.choices[0].message;
-  const reply = aiMsg?.content.trim() || "😵‍💫";
+  const reply = aiMsg?.content.trim() || NO_REPLY;
 
   say({
     text: reply,
