@@ -37,7 +37,7 @@ async function retrieveThread(
       });
     } else {
       const md = text.match(
-        new RegExp(`^<@${context.botUserId}[^>]*?>[\s\n]+(.+)`, "is")
+        new RegExp(`^<@${context.botUserId}[^>]*?>[\\s\n]+(.+)`, "is")
       );
 
       if (md) {
