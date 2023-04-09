@@ -35,17 +35,15 @@ async function retrieveThread(
         role: "assistant",
         content: text,
       });
-    } else {
-      const md = text.match(
-        new RegExp(`^<@${context.botUserId}[^>]*?>[\\s\n]+(.+)`, "is")
-      );
+    } else if (text.match(new RegExp(`^<@${context.botUserId}[^>]*?>`))) {
+      const content = text
+        .replace(new RegExp(`^<@${context.botUserId}[^>]*?>`), "")
+        .trim();
 
-      if (md) {
-        conversations.push({
-          role: "user",
-          content: md[1],
-        });
-      }
+      conversations.push({
+        role: "user",
+        content: content,
+      });
     }
   }
 }
@@ -63,14 +61,14 @@ export async function converse(message: Message, text: string) {
 
   if (event.thread_ts) {
     await retrieveThread(message, conversations);
+  } else {
+    conversations.push({
+      role: "user",
+      content: text
+        .replace(new RegExp(`^<@${context.botUserId}[^>]*?>`), "")
+        .trim(),
+    });
   }
-
-  conversations.push({
-    role: "user",
-    content: text
-      .replace(new RegExp(`^<@${context.botUserId}[^>]*?>`), "")
-      .trim(),
-  });
 
   const res = await openai.createChatCompletion({
     model: AI_MODEL,
