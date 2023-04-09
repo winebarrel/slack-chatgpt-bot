@@ -24,6 +24,7 @@ app.event("app_mention", async (message) => {
 
   try {
     await converse(message, text);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     const errMsg = e?.response?.data?.error?.message || e?.message || e;
     say(`😵 ${errMsg}`);
