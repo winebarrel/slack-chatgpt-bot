@@ -9,6 +9,7 @@ const openai = new OpenAIApi(
 );
 
 export const AI_MODEL = process.env.AI_MODEL || "gpt-3.5-turbo";
+const SYSTEM_MESSAGE = process.env.SYSTEM_MESSAGE;
 const NO_REPLY = "😵‍💫";
 
 async function retrieveThread(
@@ -51,6 +52,13 @@ export async function converse(message: Message, text: string) {
   const { say, event } = message;
   const conversations: ChatCompletionRequestMessage[] = [];
 
+  if (SYSTEM_MESSAGE) {
+    conversations.push({
+      role: "system",
+      content: SYSTEM_MESSAGE,
+    });
+  }
+
   if (event.thread_ts) {
     await retrieveThread(message, conversations);
   }
@@ -72,6 +80,6 @@ export async function converse(message: Message, text: string) {
     text: reply,
     channel: event.channel,
     thread_ts: event.ts,
-    reply_broadcast: conversations.length < 2,
+    reply_broadcast: conversations.length < (SYSTEM_MESSAGE ? 3 : 2),
   });
 }
