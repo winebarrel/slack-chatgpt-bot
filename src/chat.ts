@@ -36,7 +36,9 @@ async function retrieveThread(
         content: text,
       });
     } else {
-      const md = text.match(/^<@${context.botUserId}[^>]*?>[\s\n]+(.+)/is);
+      const md = text.match(
+        new RegExp(`^<@${context.botUserId}[^>]*?>[\s\n]+(.+)`, "is")
+      );
 
       if (md) {
         conversations.push({
@@ -49,7 +51,7 @@ async function retrieveThread(
 }
 
 export async function converse(message: Message, text: string) {
-  const { say, event } = message;
+  const { say, event, context } = message;
   const conversations: ChatCompletionRequestMessage[] = [];
 
   if (SYSTEM_MESSAGE) {
@@ -65,7 +67,9 @@ export async function converse(message: Message, text: string) {
 
   conversations.push({
     role: "user",
-    content: text,
+    content: text
+      .replace(new RegExp(`^<@${context.botUserId}[^>]*?>`), "")
+      .trim(),
   });
 
   const res = await openai.createChatCompletion({
