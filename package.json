@@ -8,7 +8,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@slack/bolt": "^3.13.1",
+    "@slack/bolt": "^3.13.2",
     "openai": "^3.2.1"
   },
   "scripts": {
