@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@slack/bolt": "^3.13.3",
-    "openai": "^3.2.1"
+    "openai": "^3.3.0"
   },
   "scripts": {
     "start": "tsc && node dist/index.js",
